@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<robot name="snackbot">
+  <link name="base_link">
+    <visual name="base_link_visual1">
+      <origin xyz="0.05 0.05 0.0078" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.0156"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <visual name="base_link_visual2">
+      <origin xyz="0.05 0.05 0.1421" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.253"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0 0.8 0.8 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0.050 0.050 0.268" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="10"/>
+  </joint>
+
+  <link name="link1">
+    <visual name="link1_visual">
+      <origin xyz="0.0505 0 0.0375" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.125 0.025 0.075"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 0.8 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0.100 0 0.075" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.09" upper="2.09" effort="10" velocity="10"/>
+  </joint>
+
+  <link name="link2">
+    <visual name="link2_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.100 0.025 0.057"/> -->
+        <mesh filename="package://rfp_snackbot/models/snackbot/link_2_manual.stl"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.8 0.8 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint3" type="prismatic">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0.100 0 0.042" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.345" upper="0" effort="10" velocity="10"/>
+  </joint>
+
+  <link name="link3">
+    <visual name="link3_visual">
+      <origin xyz="0 0 0.172" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.0125 0.40"/>
+      </geometry>
+      <material name="magenta">
+        <color rgba="0.8 0 0.8 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="ee_joint" type="fixed">
+    <parent link="link3"/>
+    <child link="ee"/>
+    <origin xyz="0.0 0 -0.028" rpy="0 0 0"/>
+  </joint>
+
+  <link name="ee">
+    <visual name="ee">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.005 0.005 0.005"/>
+      </geometry>
+      <material name="bright_blue">
+        <color rgba="0 0 1.0 1"/>
+      </material>
+    </visual>
+  </link>
+</robot>
